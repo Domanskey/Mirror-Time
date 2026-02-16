@@ -4,9 +4,10 @@ import "./index.css";
 
 export default function App() {
   const [date, setDate] = useState(new Date());
-  const jsConfetti = new JSConfetti();
 
   useEffect(() => {
+    const jsConfetti = new JSConfetti();
+
     let lastTriggered = -1;
 
     const timer = setInterval(() => {
