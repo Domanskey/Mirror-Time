@@ -5,8 +5,18 @@ export default function App() {
   const [date, setDate] = useState(new Date());
 
   useEffect(() => {
+    let lastTriggered = -1;
+
     const timer = setInterval(() => {
-      setDate(new Date());
+      const now = new Date();
+      const seconds = now.getSeconds();
+      const minutes = now.getMinutes();
+      setDate(now);
+
+      if (seconds === minutes && seconds !== lastTriggered) {
+        console.log("yolo");
+        lastTriggered = seconds;
+      }
     }, 100);
 
     return () => clearInterval(timer);
