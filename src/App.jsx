@@ -1,21 +1,23 @@
 import { useState, useEffect } from "react";
+import JSConfetti from "js-confetti";
 import "./index.css";
 
 export default function App() {
   const [date, setDate] = useState(new Date());
+  const jsConfetti = new JSConfetti();
 
   useEffect(() => {
     let lastTriggered = -1;
 
     const timer = setInterval(() => {
       const now = new Date();
-      const seconds = now.getSeconds();
+      const hours = now.getHours();
       const minutes = now.getMinutes();
       setDate(now);
 
-      if (seconds === minutes && seconds !== lastTriggered) {
-        console.log("yolo");
-        lastTriggered = seconds;
+      if (hours === minutes && minutes !== lastTriggered) {
+        jsConfetti.addConfetti();
+        lastTriggered = minutes;
       }
     }, 100);
 
@@ -27,8 +29,7 @@ export default function App() {
   return (
     <main>
       <p className="text-5xl">
-        {format(date.getHours())}:{format(date.getMinutes())}:
-        {format(date.getSeconds())}
+        {format(date.getHours())}:{format(date.getMinutes())}
       </p>
     </main>
   );
